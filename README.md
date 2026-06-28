@@ -28,39 +28,39 @@ This repository implements a custom quantum noise simulation pipeline for the Gr
 ### 1. Scientific Motivation
 
 **1.1 The Threat of Thermal Decoherence**
-[cite_start]In superconducting quantum hardware, ambient heat increases the thermal population of the environment, accelerating energy loss (Amplitude Damping) and phase loss (Phase Damping)[cite: 102]. [cite_start]Heat essentially creates atomic kinetic energy, causing physical vibrations (phonons) that collide with qubits[cite: 103]. [cite_start]This interaction acts as an "observation" from the environment, collapsing the delicate quantum state back into a classical state—a process known as decoherence[cite: 104].
+In superconducting quantum hardware, ambient heat increases the thermal population of the environment, accelerating energy loss (Amplitude Damping) and phase loss (Phase Damping). Heat essentially creates atomic kinetic energy, causing physical vibrations (phonons) that collide with qubits. This interaction acts as an "observation" from the environment, collapsing the delicate quantum state back into a classical state—a process known as decoherence.
 
 **1.2 The Stratospheric Advantage**
-[cite_start]Operating at an altitude of approximately 20 km, HAPs are exposed to an ambient temperature of approximately 215 K (compared to 300 K at sea level)[cite: 105, 106]. [cite_start]This naturally sub-zero environment imposes a significantly smaller "thermal penalty" on the cryogenic payload[cite: 106]. [cite_start]By reducing the thermal gap the cryocooler must bridge, the system achieves longer effective $T_1$ and $T_2$ times, providing a inherently quieter environment for quantum logic gates to operate[cite: 107].
+Operating at an altitude of approximately 20 km, HAPs are exposed to an ambient temperature of approximately 215 K (compared to 300 K at sea level). This naturally sub-zero environment imposes a significantly smaller "thermal penalty" on the cryogenic payload. By reducing the thermal gap the cryocooler must bridge, the system achieves longer effective $T_1$ and $T_2$ times, providing a inherently quieter environment for quantum logic gates to operate.
 
 ---
 
 ### 2. Thermodynamic Noise Model
 
 **2.1 Phenomenological Thermal Mapping**
-[cite_start]To bridge aerospace thermodynamics and quantum mechanics, this simulator establishes a thermal penalty ratio mapping the ambient temperature ($T_o$) to baseline coherence metrics[cite: 108]. The effective coherence times are derived as:
+To bridge aerospace thermodynamics and quantum mechanics, this simulator establishes a thermal penalty ratio mapping the ambient temperature ($T_o$) to baseline coherence metrics. The effective coherence times are derived as:
 
 $$T_{1,\text{eff}} = \frac{T_{1,\text{base}}}{(T_o / 300)}$$
-[cite_start]$$T_{2,\text{eff}} = \frac{T_{2,\text{base}}}{(T_o / 300)}$$ [cite: 109]
+$$T_{2,\text{eff}} = \frac{T_{2,\text{base}}}{(T_o / 300)}$$ 
 
 **2.2 Quantum Channel Probabilities**
 The probability of a qubit spontaneously losing its excited state (Amplitude Damping, $\gamma$) over a specific gate time ($t_g$) is defined by:
 
-[cite_start]$$\gamma = 1 - e^{-t_g / T_{1,\text{eff}}}$$ [cite: 110]
+$$\gamma = 1 - e^{-t_g / T_{1,\text{eff}}}$$ 
 
 The probability of a qubit losing its phase relationship (Phase Damping, $\lambda$) is defined by:
 
-[cite_start]$$\lambda = 1 - e^{-t_g / T_{2,\text{eff}}}$$ [cite: 110]
+$$\lambda = 1 - e^{-t_g / T_{2,\text{eff}}}$$ 
 
 ---
 
 ### 3. Cirq Implementation Architecture
 
 **3.1 Custom `cirq.NoiseModel`**
-[cite_start]Rather than applying generic depolarization, this project subclasses `cirq.NoiseModel` to build the `StratosphericNoiseModel`[cite: 110]. [cite_start]This class dynamically calculates $\gamma$ and $\lambda$ based on the input atmospheric temperature and injects `cirq.amplitude_damp` and `cirq.phase_damp` channels into every operation within the circuit[cite: 111].
+Rather than applying generic depolarization, this project subclasses `cirq.NoiseModel` to build the `StratosphericNoiseModel`. This class dynamically calculates $\gamma$ and $\lambda$ based on the input atmospheric temperature and injects `cirq.amplitude_damp` and `cirq.phase_damp` channels into every operation within the circuit.
 
 **3.2 Density Matrix Simulation**
-[cite_start]Because amplitude and phase damping are non-unitary operations that convert pure quantum states into mixed states, standard state-vector simulators cannot mathematically resolve the circuit[cite: 112]. [cite_start]This project utilizes `cirq.DensityMatrixSimulator` to accurately model the thermodynamic decay of the quantum states over 1,000+ simulation repetitions[cite: 113].
+Because amplitude and phase damping are non-unitary operations that convert pure quantum states into mixed states, standard state-vector simulators cannot mathematically resolve the circuit. This project utilizes `cirq.DensityMatrixSimulator` to accurately model the thermodynamic decay of the quantum states over 1,000+ simulation repetitions.
 
 ---
 
