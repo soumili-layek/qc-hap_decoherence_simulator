@@ -1,0 +1,40 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# VQE-Cryo-Optimizer — Python Dependencies
+# Green Quantum Computing in the Sky | HAP-QDC SWaP Optimisation
+# ─────────────────────────────────────────────────────────────────────────────
+#
+# Install with:
+#   pip install -r requirements.txt
+#
+# Tested on Python 3.10 / 3.11 / 3.12 (Linux, macOS, Windows)
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Quantum Computing Framework ───────────────────────────────────────────────
+pennylane>=0.38.0           # Hybrid quantum-classical ML framework (Xanadu)
+                            # Includes default.qubit statevector simulator,
+                            # QNode interface, and gradient transforms
+
+# ── Scientific Computing ─────────────────────────────────────────────────────
+numpy>=1.26.0               # N-dimensional array operations, random sampling
+scipy>=1.13.0               # L-BFGS-B optimiser (scipy.optimize.minimize)
+
+# ── Visualisation ────────────────────────────────────────────────────────────
+matplotlib>=3.9.0           # Diagnostic plots: overhead curves, error landscapes,
+                            # convergence histories, power allocation bar charts
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Optional — Accelerated Simulation (GPU / Tensor backends)
+# ─────────────────────────────────────────────────────────────────────────────
+# Uncomment to enable GPU-accelerated statevector simulation via PyTorch:
+#   torch>=2.3.0
+#   pennylane-torch>=0.38.0
+#
+# Uncomment to enable JAX-based JIT compilation and auto-differentiation:
+#   jax>=0.4.28
+#   jaxlib>=0.4.28
+#   pennylane-jax>=0.38.0   # (included in pennylane[jax])
+#
+# Uncomment for access to real quantum hardware (IBM Quantum):
+#   pennylane-qiskit>=0.38.0
+#   qiskit-ibm-runtime>=0.25.0
+# ─────────────────────────────────────────────────────────────────────────────
