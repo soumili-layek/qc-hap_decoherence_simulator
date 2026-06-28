@@ -10,8 +10,7 @@
 ---
 
 ### Abstract
-[cite_start]This repository implements a custom quantum noise simulation pipeline for the Green Quantum Computing in the Sky research programme[cite: 98]. [cite_start]The core objective is to quantify the quantum fidelity advantage of deploying superconducting Quantum Data Centers (QDCs) aboard High-Altitude Platforms (HAPs) in the stratosphere[cite: 99]. [cite_start]By extending Google Cirq's native noise frameworks, this project maps ambient atmospheric temperature directly to qubit relaxation ($T_1$) and dephasing ($T_2$) times[cite: 100]. [cite_start]The simulator executes fragile quantum circuits under a custom density matrix environment, analytically proving that the 215 K stratospheric ambient temperature significantly suppresses amplitude and phase damping compared to terrestrial baselines[cite: 101].
-
+This repository implements a custom quantum noise simulation pipeline for the Green Quantum Computing in the Sky research programme. The core objective is to quantify the quantum fidelity advantage of deploying superconducting Quantum Data Centers (QDCs) aboard High-Altitude Platforms (HAPs) in the stratosphere. By extending Google Cirq's native noise frameworks, this project maps ambient atmospheric temperature directly to qubit relaxation ($T_1$) and dephasing ($T_2$) times. The simulator executes fragile quantum circuits under a custom density matrix environment, analytically proving that the 215 K stratospheric ambient temperature significantly suppresses amplitude and phase damping compared to terrestrial baselines.
 ---
 
 ### Table of Contents
